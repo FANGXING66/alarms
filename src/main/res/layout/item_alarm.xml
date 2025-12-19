@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    闹钟列表项布局文件 - item_alarm.xml
+    
+    功能：
+    RecyclerView 中每个闹钟项的布局，显示单个闹钟的信息。
+    
+    显示内容：
+    1. 闹钟时间（tvTime）：大字号（48sp），根据启用状态显示不同颜色
+    2. 重复设置（tvRepeat）：小字号（14sp），显示"仅一次"、"每天"或具体星期
+    3. 标签（tvLabel）：如果有自定义标签且不是"闹钟"，则显示（默认隐藏）
+    4. 跳过节假日标记（tvSkipHolidays）：如果启用了跳过节假日，显示橙色文字（默认隐藏）
+    5. 启用/禁用开关（switchEnabled）：右侧开关，切换闹钟状态
+    
+    布局结构：
+    MaterialCardView（卡片容器，白色背景，圆角12dp）
+    └── LinearLayout（水平布局）
+        ├── LinearLayout（左侧信息区域，垂直布局）
+        │   ├── TextView（时间）
+        │   ├── TextView（重复设置）
+        │   ├── TextView（标签，可选）
+        │   └── TextView（跳过节假日标记，可选）
+        └── SwitchCompat（右侧开关）
+    
+    颜色规则：
+    - 启用状态：时间=text_primary（黑色），其他=text_secondary（灰色）
+    - 禁用状态：全部=text_disabled（浅灰色）
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="#FFFFFF"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- 闹钟时间：大字号，粗体，根据启用状态改变颜色 -->
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:00"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_disabled"
+                android:letterSpacing="0.1" />
+
+            <!-- 重复设置：显示"仅一次"、"每天"或具体选择的星期 -->
+            <TextView
+                android:id="@+id/tvRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仅一次"
+                android:textSize="14sp"
+                android:textColor="@color/text_disabled"
+                android:layout_marginTop="4dp" />
+
+            <!-- 标签：如果有自定义标签且不是默认"闹钟"，则显示（默认隐藏） -->
+            <TextView
+                android:id="@+id/tvLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="@color/text_disabled"
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
+
+            <!-- 跳过节假日标记：如果启用了跳过节假日，显示橙色文字（默认隐藏） -->
+            <TextView
+                android:id="@+id/tvSkipHolidays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="跳过节假日"
+                android:textSize="14sp"
+                android:textColor="#FF9800"
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- 启用/禁用开关：切换闹钟状态 -->
+        <!-- 切换时通过 AlarmAdapter.OnAlarmActionListener 回调通知 MainActivity -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchEnabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/switch_thumb"
+            android:trackTint="@color/switch_track" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

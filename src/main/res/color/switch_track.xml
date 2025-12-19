@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 开启状态：橙色轨道 -->
+    <item android:state_checked="true" android:color="#FFCC80" />
+    <!-- 关闭状态：浅灰色轨道（基于 #9E9E9E，降低不透明度） -->
+    <item android:color="#4D9E9E9E" />
+</selector>
+
+

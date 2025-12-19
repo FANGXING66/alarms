@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange_primary">#FF9800</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_disabled">#BDBDBD</color>
+    <color name="background">#F5F5F5</color>
+    <color name="red_primary">#F44336</color>
+    <color name="divider">#E0E0E0</color>
+    <!-- 关闭/未选中状态统一灰色 -->
+    <color name="button_gray">#cccccc</color>
+    <color name="background_semi_transparent">#80000000</color>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive foreground optimized for square display -->
+<!-- Minimal inset (8dp) to maximize icon visibility in square mode while keeping edge elements safe -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/alarm_icon"
+        android:insetLeft="8dp"
+        android:insetTop="8dp"
+        android:insetRight="8dp"
+        android:insetBottom="8dp" />
+</layer-list>
+

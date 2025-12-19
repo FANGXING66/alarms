@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    闹钟响铃界面布局文件 - activity_alarm_ringing.xml
+    
+    功能：
+    当闹钟触发时显示的界面，用户可以选择"稍后提醒"或"关闭"。
+    
+    界面特点：
+    1. 透明背景：不遮挡底层内容
+    2. 大字号时间显示（72sp）：清晰展示闹钟时间
+    3. 两个操作按钮：稍后提醒（橙色）和关闭（橙色）
+    4. 全屏显示：即使在锁屏状态下也能显示（通过代码设置窗口标志）
+    
+    布局结构：
+    LinearLayout（根布局，垂直居中）
+    ├── TextView（闹钟时间，72sp，白色，粗体）
+    ├── TextView（闹钟标签，24sp，灰色）
+    └── LinearLayout（按钮区域，水平布局）
+        ├── MaterialButton（稍后提醒按钮）
+        └── MaterialButton（关闭按钮）
+    
+    注意事项：
+    - 此 Activity 使用特殊主题（AlarmRingingTheme）确保在锁屏时显示
+    - 禁用返回键，必须点击按钮才能关闭
+    - "稍后提醒"按钮可能会隐藏（如果达到最大次数或禁用稍后提醒）
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_semi_transparent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <!-- 闹钟时间显示：大字号（72sp），白色，粗体，格式 HH:mm -->
+    <TextView
+        android:id="@+id/tvAlarmTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="08:00"
+        android:textSize="72sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 闹钟标签显示：显示自定义标签或默认"闹钟"，灰色，24sp -->
+    <TextView
+        android:id="@+id/tvAlarmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="闹钟"
+        android:textSize="24sp"
+        android:textColor="#BDBDBD"
+        android:layout_marginBottom="64dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="64dp">
+
+        <!-- 稍后提醒按钮：点击后重新调度闹钟（N分钟后再次触发） -->
+        <!-- 注意：如果达到最大次数或禁用稍后提醒，此按钮会被隐藏（通过代码控制 visibility） -->
+        <!-- 按钮背景颜色：橙色（#FF9800） -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSnooze"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/snooze"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/orange_primary"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="28dp"
+            android:layout_marginEnd="16dp"
+            android:padding="16dp" />
+
+        <!-- 关闭按钮：点击后停止铃声并关闭界面 -->
+        <!-- 如果设置了"关闭后删除此闹钟"，会同时删除闹钟 -->
+        <!-- 按钮背景颜色：灰色（#9E9E9E） -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDismiss"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dismiss"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/button_gray"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="28dp"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
